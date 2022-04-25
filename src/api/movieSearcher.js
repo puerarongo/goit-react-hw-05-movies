@@ -25,6 +25,6 @@ export const filmCast = (id_film) => {
     return fetchFilms(`${BASE_URL}movie/${id_film}/credits?api_key=${API_KEY}&language=en-US`)
 };
 
-export const filmReviews = (id_film) => {
+export const filmReview = (id_film) => {
     return fetchFilms(`${BASE_URL}movie/${id_film}/reviews?api_key=${API_KEY}&language=en-US`)
 };

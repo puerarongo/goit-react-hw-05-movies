@@ -5,7 +5,7 @@ import { trendingFilms } from "api/movieSearcher";
 
 const HomePage = () => {
     const [film, setFilm] = useState([]);
-    
+
 
     useEffect(() => {
         trendingFilms().then(response => {
@@ -19,7 +19,7 @@ const HomePage = () => {
 
     return (
         <>
-            <h1>Home</h1>
+            <h1>Trending today</h1>
             <ul>
                 {film.length > 0 && (
                     film.map(({ id, title }) => {
