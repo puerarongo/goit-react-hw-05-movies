@@ -1,0 +1,31 @@
+import axios from "axios";
+
+const BASE_URL = "https://api.themoviedb.org/3/";
+const API_KEY = "067f291d21ed1c6d30bd9ade17d843cc";
+
+const fetchFilms = async (url) => {
+    const response = await axios.get(url);
+    return response;
+};
+
+export const trendingFilms = () => {
+    return fetchFilms(`${BASE_URL}trending/movie/day?api_key=${API_KEY}`)
+};
+
+export const searchedFilms = (value) => {
+    return fetchFilms(`${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${value}
+    &page=1&include_adult=false`)
+};
+
+export const filmsDescription = (id_film) => {
+    return fetchFilms(`${BASE_URL}movie/${id_film}?api_key=${API_KEY}&language=en-US`)
+};
+
+export const filmCast = (id_film) => {
+    return fetchFilms(`${BASE_URL}movie/${id_film}/credits?api_key=${API_KEY}&language=en-US`)
+};
+
+export const filmReviews = (id_film) => {
+    return fetchFilms(`${BASE_URL}movie/${id_film}/reviews?api_key=${API_KEY}&language=en-US`)
+};
+

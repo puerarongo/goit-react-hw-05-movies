@@ -1,0 +1,12 @@
+.nav__link {
+    color: rgb(200, 14, 14);
+    cursor: pointer;
+}
+
+.active__link {
+    color: rgb(90, 12, 12);
+}
+
+.nav__link:not(:last-child) {
+    margin-right: 10px;
+}

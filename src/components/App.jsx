@@ -1,18 +1,17 @@
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import AppBar from './appBar/AppBar';
+import HomePage from './homePage/HomePage';
+import MoviesPage from './moviesPage/MoviesPage';
+
+
 const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        textTransform: 'uppercase',
-        color: '#010101',
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <AppBar />
+      <HomePage />
+      <MoviesPage />
+    </>
   );
 };
 
