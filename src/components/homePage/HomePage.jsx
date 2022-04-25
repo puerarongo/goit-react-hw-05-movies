@@ -5,6 +5,7 @@ import { trendingFilms } from "api/movieSearcher";
 
 const HomePage = () => {
     const [film, setFilm] = useState([]);
+    
 
     useEffect(() => {
         trendingFilms().then(response => {

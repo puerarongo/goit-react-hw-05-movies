@@ -1,17 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { searchedFilms } from 'api/movieSearcher';
 //import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
     const [value, setValue] = useState("");
+    const [request, setRequest] = useState("");
+    const [searchFilm, setSearchFilm] = useState([]);
+
+    useEffect(() => {
+        if (!request) {
+            return
+        }
+        console.log(request)
+
+        searchedFilms(request).then(response => {
+            const found = response.data.results.map(({ title, id }) => {
+                return { title: title, id: id }
+            })
+            setSearchFilm([...found]);
+        }).catch(error => console.log(error));
+    }, [request]);
+
 
     const inputHandler = e => {
         const { value } = e.currentTarget;
         setValue(value);
     };
+    
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(value)
+        setRequest(value);
         setValue("");
     };
 
@@ -24,6 +44,13 @@ const MoviesPage = () => {
                 </label>
                 <button type="submit">Search</button>
             </form>
+            <ul>
+                {searchFilm.length > 0 && (
+                    searchFilm.map(({ id, title }) => {
+                        return <li key={id}><Link to="/">{title}</Link></li>
+                    })
+                )}
+            </ul>
         </div>
     );
 };
