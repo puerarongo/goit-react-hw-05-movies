@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { trendingFilms } from "api/movieSearcher";
-import styles from "./HomePage.module.css";
+//import styles from "./HomePage.module.css";
 
 const HomePage = () => {
     const [film, setFilm] = useState([]);
 
     useEffect(() => {
         trendingFilms().then(response => {
-            console.log(response.data.results)
             const trends = response.data.results.map(({ title, id }) => {
                 return {title: title, id: id}
             })

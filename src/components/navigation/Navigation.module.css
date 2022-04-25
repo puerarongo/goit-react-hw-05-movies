@@ -1,12 +1,14 @@
-.nav__link {
+.link:not(:last-child),
+.active__link:not(:last-child) {
+    margin-right: 10px;
+}
+
+.link {
     color: rgb(200, 14, 14);
     cursor: pointer;
 }
 
 .active__link {
     color: rgb(90, 12, 12);
-}
-
-.nav__link:not(:last-child) {
-    margin-right: 10px;
+    cursor: pointer;
 }

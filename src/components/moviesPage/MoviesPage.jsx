@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-
-import styles from "./MoviesPage.module.css";
+//import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
     const [value, setValue] = useState("");
