@@ -1,17 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AppBar from './appBar/AppBar';
+import Navigation from './navigation/Navigation';
 import HomePage from './homePage/HomePage';
 import MoviesPage from './moviesPage/MoviesPage';
+import MovieDetailsPage from './movieDetailsPage/MovieDetailsPage';
 
 
 const App = () => {
   return (
     <>
-      <AppBar />
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}/>
       </Routes>
     </>
   );

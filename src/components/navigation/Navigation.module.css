@@ -1,3 +1,7 @@
+.nav {
+    padding: 20px 30px;
+}
+
 .link:not(:last-child),
 .active__link:not(:last-child) {
     margin-right: 10px;

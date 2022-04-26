@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useMatch} from "react-router-dom";
 import { searchedFilms } from 'api/movieSearcher';
 //import styles from "./MoviesPage.module.css";
 
@@ -8,11 +8,15 @@ const MoviesPage = () => {
     const [request, setRequest] = useState("");
     const [searchFilm, setSearchFilm] = useState([]);
 
+   // const match = useMatch("/movies").pattern.path
+   // console.log(match)
+
+
     useEffect(() => {
         if (!request) {
             return
         }
-        console.log(request)
+        //console.log(request)
 
         searchedFilms(request).then(response => {
             const found = response.data.results.map(({ title, id }) => {
@@ -27,7 +31,7 @@ const MoviesPage = () => {
         const { value } = e.currentTarget;
         setValue(value);
     };
-    
+
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -47,7 +51,9 @@ const MoviesPage = () => {
             <ul>
                 {searchFilm.length > 0 && (
                     searchFilm.map(({ id, title }) => {
-                        return <li key={id}><Link to="/">{title}</Link></li>
+                        return <li key={id}>
+                            <Link to={`/movies/${id}`} >{title}</Link>
+                        </li>
                     })
                 )}
             </ul>
