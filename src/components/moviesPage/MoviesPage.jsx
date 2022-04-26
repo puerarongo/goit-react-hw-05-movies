@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useMatch} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { searchedFilms } from 'api/movieSearcher';
 //import styles from "./MoviesPage.module.css";
 
@@ -8,8 +8,8 @@ const MoviesPage = () => {
     const [request, setRequest] = useState("");
     const [searchFilm, setSearchFilm] = useState([]);
 
-   // const match = useMatch("/movies").pattern.path
-   // console.log(match)
+    // const match = useMatch("/movies").pattern.path
+    // console.log(match)
 
 
     useEffect(() => {
