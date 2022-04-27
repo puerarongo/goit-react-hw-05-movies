@@ -8,7 +8,7 @@ import MovieDetailsPage from './movieDetailsPage/MovieDetailsPage';
 import NotFound from './notFound/NotFound';
 import Cast from 'components/cast/Cast';
 import Reviews from 'components/reviews/Reviews';
-import { searchedFilms, filmDescription, filmCast, filmReview } from 'api/movieSearcher';
+import { searchedFilms, filmCast, filmReview } from 'api/movieSearcher';
 
 
 const App = () => {

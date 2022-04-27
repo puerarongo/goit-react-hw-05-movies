@@ -13,7 +13,7 @@ const MovieDetailsPage = ({ handler }) => {
 
         filmDescription(id).then(response => setDescription(response.data)).catch(error => console.log(error));
 
-    }, [id]);
+    }, [id, handler]);
 
 
     return (
