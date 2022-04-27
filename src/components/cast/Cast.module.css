@@ -1,0 +1,13 @@
+.cast__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.character {
+    margin-bottom: 20px;
+    width: calc(25% - 15px);
+}
+
+.character:not(:nth-child(4n)) {
+    margin-right: 20px;
+}

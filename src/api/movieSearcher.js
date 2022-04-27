@@ -17,7 +17,7 @@ export const searchedFilms = (value) => {
     &page=1&include_adult=false`)
 };
 
-export const filmsDescription = (id_film) => {
+export const filmDescription = (id_film) => {
     return fetchFilms(`${BASE_URL}movie/${id_film}?api_key=${API_KEY}&language=en-US`)
 };
 
