@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams, Outlet } from "react-router-dom";
 
-import { filmDescription, filmCast, filmReview } from 'api/movieSearcher';
-import Cast from 'components/cast/Cast';
-import Reviews from 'components/reviews/Reviews';
+import { filmDescription } from 'api/movieSearcher';
 
-const MovieDetailsPage = () => {
-    //const [id, setId] = useState(useParams().movieId);
+const MovieDetailsPage = ({ handler }) => {
     const [description, setDescription] = useState([]);
-    const [cast, setCast] = useState([]);
-    const [review, setReview] = useState([]);
-
     const id = useParams().movieId;
 
+
     useEffect(() => {
-        console.log(id);
+        handler(id);
 
         filmDescription(id).then(response => setDescription(response.data)).catch(error => console.log(error));
 
-        filmCast(id).then(response => setCast(response.data.cast)).catch(error => console.log(error));
-
-        filmReview(id).then(response => setReview(response.data.results)).catch(error => console.log(error));
     }, [id]);
 
 
@@ -36,20 +28,23 @@ const MovieDetailsPage = () => {
                     <h2>Genres</h2>
                     <p>{description.genres && description.genres.map(({name}) => name + " ")}</p>
                 </div> 
-                <div>
-                    <h3>Additional information:</h3>
-                    <ul>
-                        <li>
-                            <Link to="/">Cast</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Review</Link>
-                        </li>
-                    </ul>
-                </div>
             </div>
-            <Cast cast={cast}/>
-            <Reviews review={review}/>
+            <div>
+                <h3>Additional information:</h3>
+                <ul>
+                    <li>
+                        <NavLink to="cast">Cast</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="reviews">Review</NavLink>
+                    </li>
+                </ul>
+            </div>
+            <hr />
+            <div>
+                <Outlet />
+            </div>
+            
         </div>
     )
 };
