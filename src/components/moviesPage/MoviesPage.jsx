@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-//import styles from "./MoviesPage.module.css";
+import styles from "./MoviesPage.module.css";
+import homePageStyles from "../homePage/HomePage.module.css";
 
 const MoviesPage = ({submit, films}) => {
     const [value, setValue] = useState("");
-
-    // const match = useMatch("/movies").pattern.path
-    // console.log(match)
 
     const inputHandler = e => {
         const { value } = e.currentTarget;
@@ -20,19 +18,19 @@ const MoviesPage = ({submit, films}) => {
     };
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
+        <div className={styles.container}>
+            <form className={styles.form} cnSubmit={submitHandler}>
                 <label>
-                    Enter the name of the movie in the search bar:
-                    <input type="text" value={value} onChange={inputHandler}></input>
+                    <input className={styles.form__input} placeholder="Enter movie name..."
+                        type="text" value={value} onChange={inputHandler}></input>
                 </label>
-                <button type="submit">Search</button>
+                <button className={styles.form__button} type="submit">Search</button>
             </form>
-            <ul>
+            <ul className={homePageStyles.trends}>
                 {films.length > 0 && (
                     films.map(({ id, title }) => {
-                        return <li key={id}>
-                            <Link to={`${id}`} >{title}</Link>
+                        return <li key={id} className={homePageStyles.movie__item}>
+                            <Link to={`${id}`} className={homePageStyles.movie__link} >{title}</Link>
                         </li>
                     })
                 )}

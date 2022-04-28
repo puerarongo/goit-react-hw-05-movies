@@ -6,7 +6,7 @@ const Navigation = () => {
         <nav className={styles.nav}>
             <NavLink to="/" className={({ isActive }) => isActive ? styles.active__link : styles.link}>Home</NavLink>
             <NavLink to="movies" className={({ isActive }) => isActive ? styles.active__link : styles.link}>Movies</NavLink>
-            <hr />
+            
         </nav>
     );
 };
