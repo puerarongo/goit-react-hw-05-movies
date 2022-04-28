@@ -61,10 +61,9 @@ const App = () => {
       <Navigation />
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="/movies" element={<MoviesPage submit={requestHandler} films={searchFilm} />} />
+        <Route path="movies" element={<MoviesPage submit={requestHandler} films={searchFilm} />} />
         
-        <Route path="/movies/:movieId" element={<MovieDetailsPage handler={idHandler}/>}>
-          <Route path="found" element={<NotFound />} />
+        <Route path="movies/:movieId" element={<MovieDetailsPage handler={idHandler}/>}>
           <Route path="cast" element={<Cast cast={cast} />} />
           <Route path="reviews" element={<Reviews review={review} />} />
         </Route>

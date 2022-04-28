@@ -23,7 +23,7 @@ const HomePage = () => {
             <ul>
                 {film.length > 0 && (
                     film.map(({ id, title }) => {
-                        return <li key={id}><Link to={`/movies/${id}`}>{title}</Link></li>})
+                        return <li key={id}><Link to={`movies/${id}`}>{title}</Link></li>})
                     )
                 }
             </ul>

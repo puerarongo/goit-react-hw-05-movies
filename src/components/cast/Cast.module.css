@@ -1,13 +1,39 @@
 .cast__list {
     display: flex;
     flex-wrap: wrap;
+    list-style-type: none;
 }
 
 .character {
     margin-bottom: 20px;
-    width: calc(25% - 15px);
+    width: calc(20% - 20px );
 }
 
-.character:not(:nth-child(4n)) {
+.character:not(:nth-child(5n)) {
     margin-right: 20px;
+}
+
+.image {
+    display: block;
+    height: 360px;
+    width: 100%;
+}
+
+.description {
+    height: 80px;
+    padding: 8px 10px;
+    border-left: 1px solid rgba(75, 75, 75, 30%);
+    border-right: 1px solid rgba(75, 75, 75, 30%);
+    border-bottom: 1px solid rgba(75, 75, 75, 30%);
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.role {
+    font-size: 16px;
+    font-weight: 400;
 }

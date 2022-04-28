@@ -32,7 +32,7 @@ const MoviesPage = ({submit, films}) => {
                 {films.length > 0 && (
                     films.map(({ id, title }) => {
                         return <li key={id}>
-                            <Link to={`/movies/${id}`} >{title}</Link>
+                            <Link to={`${id}`} >{title}</Link>
                         </li>
                     })
                 )}
