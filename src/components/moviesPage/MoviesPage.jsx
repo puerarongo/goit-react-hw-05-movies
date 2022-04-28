@@ -19,7 +19,7 @@ const MoviesPage = ({submit, films}) => {
 
     return (
         <div className={styles.container}>
-            <form className={styles.form} cnSubmit={submitHandler}>
+            <form className={styles.form} onSubmit={submitHandler}>
                 <label>
                     <input className={styles.form__input} placeholder="Enter movie name..."
                         type="text" value={value} onChange={inputHandler}></input>

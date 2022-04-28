@@ -1,3 +1,29 @@
-.reviews__list {
+.title {
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(255, 124, 16);
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+.reviws__list {
+    text-align: justify;
+}
+
+.review {
     list-style: none;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.text {
+    font: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
 }

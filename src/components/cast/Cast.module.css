@@ -7,6 +7,7 @@
 .character {
     margin-bottom: 20px;
     width: calc(20% - 20px );
+    border: 1px solid rgba(75, 75, 75, 30%);
 }
 
 .character:not(:nth-child(5n)) {
@@ -22,9 +23,6 @@
 .description {
     height: 80px;
     padding: 8px 10px;
-    border-left: 1px solid rgba(75, 75, 75, 30%);
-    border-right: 1px solid rgba(75, 75, 75, 30%);
-    border-bottom: 1px solid rgba(75, 75, 75, 30%);
 }
 
 .name {
