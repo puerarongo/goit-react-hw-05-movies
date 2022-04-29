@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useParams, useNavigate } from "react-router-dom";
 
 import { filmDescription } from 'api/movieSearcher';
+import defaultPicture from 'api/defaultPucture';
 import styles from "./MovieDetailsPage.module.css";
 import homePageStyles from "../homePage/HomePage.module.css";
 
@@ -28,7 +29,8 @@ const MovieDetailsPage = ({ handler }) => {
                 <button className={styles.button} type='button' onClick={buttonHandler}>Go back</button> 
             </div>
             <div className={styles.container__description}>
-                <img src={`https://image.tmdb.org/t/p/w500${description.poster_path}`}
+                    <img src={description.poster_path ? `https://image.tmdb.org/t/p/w500${description.poster_path}`
+                            : defaultPicture}
                     alt={description.title} className={styles.image} />
                 
                 <div className={styles.description}>
