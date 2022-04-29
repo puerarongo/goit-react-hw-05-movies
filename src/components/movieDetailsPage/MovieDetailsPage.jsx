@@ -18,7 +18,6 @@ const MovieDetailsPage = ({ handler }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("!")
         handler(id);
         filmDescription(id).then(response => {
             if (response.status === 404) {
