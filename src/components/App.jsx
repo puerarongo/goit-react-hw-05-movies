@@ -1,5 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { searchedFilms, filmCast, filmReview } from 'api/movieSearcher';
 import Navigation from './navigation/Navigation';
@@ -11,6 +12,14 @@ import Loader from './loader/Loader';
 //import NotFound from './notFound/NotFound';
 //import Cast from 'components/cast/Cast';
 //import Reviews from 'components/reviews/Reviews';
+
+Notify.init({
+  timeout: 3000,
+  warning: {
+    background: 'rgb(255, 124, 16)',
+    textColor: 'rgb(0, 0, 0)',
+    notiflixIconColor: 'rgba(0,0,0)'}
+});
 
 const HomePage = lazy(() => import('./homePage/HomePage'));
 const MoviesPage = lazy(() => import('./moviesPage/MoviesPage'));
@@ -32,12 +41,16 @@ const App = () => {
     }
 
     searchedFilms(request).then(response => {
+      if (response.data.results.length === 0) {
+        return Notify.warning("The title of this movie does not exist!");
+      }
       const found = response.data.results.map(({ title, id }) => {
         return { title: title, id: id }
       })
       setSearchFilm([...found]);
       }).catch(error => console.log(error));
   }, [request]);
+  
   
   useEffect(() => {
     if (!id) {
