@@ -45,7 +45,6 @@ const App = () => {
     }
 
     filmCast(id).then(response => setCast(response.data.cast)).catch(error => console.log(error));
-
     filmReview(id).then(response => setReview(response.data.results)).catch(error => console.log(error));
   }, [id]);
 
