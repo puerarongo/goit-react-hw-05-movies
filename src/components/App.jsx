@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { searchedFilms, filmCast, filmReview } from 'api/movieSearcher';
-import Navigation from './navigation/Navigation';
+//import Navigation from './navigation/Navigation';
+import Layout from './layout/Layout';
 import Loader from './loader/Loader';
 
 //import HomePage from './homePage/HomePage';
@@ -18,7 +19,8 @@ Notify.init({
   warning: {
     background: 'rgb(255, 124, 16)',
     textColor: 'rgb(0, 0, 0)',
-    notiflixIconColor: 'rgba(0,0,0)'}
+    notiflixIconColor: 'rgba(0,0,0)'
+  }
 });
 
 const HomePage = lazy(() => import('./homePage/HomePage'));
@@ -48,10 +50,10 @@ const App = () => {
         return { title: title, id: id }
       })
       setSearchFilm([...found]);
-      }).catch(error => console.log(error));
+    }).catch(error => console.log(error));
   }, [request]);
-  
-  
+
+
   useEffect(() => {
     if (!id) {
       return
@@ -72,19 +74,19 @@ const App = () => {
 
   return (
     <>
-      <Navigation />
-
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route index element={<HomePage />} />
-          <Route path="movies" element={<MoviesPage submit={requestHandler} films={searchFilm} />} />
-        
-          <Route path="movies/:movieId" element={<MovieDetailsPage handler={idHandler}/>}>
-            <Route path="cast" element={<Cast cast={cast} />} />
-            <Route path="reviews" element={<Reviews review={review} />} />
-          </Route>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="movies" element={<MoviesPage submit={requestHandler} films={searchFilm} />} />
 
-          <Route path="*" element={<NotFound />} />
+            <Route path="movies/:movieId" element={<MovieDetailsPage handler={idHandler} />}>
+              <Route path="cast" element={<Cast cast={cast} />} />
+              <Route path="reviews" element={<Reviews review={review} />} />
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </Suspense>
     </>

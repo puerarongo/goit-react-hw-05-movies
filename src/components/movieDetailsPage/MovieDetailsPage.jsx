@@ -8,12 +8,14 @@ import homePageStyles from "../homePage/HomePage.module.css";
 
 const MovieDetailsPage = ({ handler }) => {
     const [description, setDescription] = useState([]);
+    //const [error, setError] = useState("");
     const id = useParams().movieId;
     const navigate = useNavigate();
 
     useEffect(() => {
         handler(id);
-        filmDescription(id).then(response => setDescription(response.data)).catch(error => console.log(error));
+        filmDescription(id).then(response => setDescription(response.data))
+            .catch(error => console.log(error));
     }, [id, handler]);
 
 
