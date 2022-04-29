@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { searchedFilms, filmCast, filmReview } from 'api/movieSearcher';
-//import Navigation from './navigation/Navigation';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
 
