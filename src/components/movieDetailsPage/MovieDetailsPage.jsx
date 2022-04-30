@@ -11,16 +11,15 @@ import { filmDescription } from 'api/movieSearcher';
 
 
 
-const MovieDetailsPage = ({ handler }) => {
+const MovieDetailsPage = () => {
     const [description, setDescription] = useState([]);
     const [error, setError] = useState("");
-    
-    const id = useParams().movieId;
+
     const navigate = useNavigate();
+    const id = useParams().movieId;
 
 
     useEffect(() => {
-        handler(id);
         filmDescription(id).then(response => {
             if (response.status === 404) {
                 throw new Error("This movie is not in the database")
@@ -28,7 +27,7 @@ const MovieDetailsPage = ({ handler }) => {
             setDescription(response.data)
         })
             .catch(error => setError(error));
-    }, [id, handler]);
+    }, [id]);
 
 
     const buttonHandler = () => {

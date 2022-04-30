@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 import { filmReview } from 'api/movieSearcher';
 import styles from "./Reviews.module.css";
 
-const Reviews = ({ id }) => {
+
+const Reviews = () => {
     const [review, setReview] = useState([]);
+    const id = useParams().movieId;
 
     useEffect(() => {
         if (!id) {
@@ -28,6 +31,6 @@ const Reviews = ({ id }) => {
             </ul>
         </div>
     )
-}
+};
 
 export default Reviews;

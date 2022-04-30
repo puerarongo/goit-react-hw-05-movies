@@ -28,7 +28,7 @@ const MoviesPage = () => {
 
         searchedFilms(movieName).then(response => {
             if (response.data.results.length === 0) {
-                return Notify.warning("The title of this movie does not exist!");
+                return Notify.warning("There is no movie with this name in the database!");
             }
             const found = response.data.results.map(({ title, id }) => {
                 return { title: title, id: id }

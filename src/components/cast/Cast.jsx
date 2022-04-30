@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 import { filmCast } from 'api/movieSearcher';
 import defaultPicture from 'api/defaultPucture';
@@ -6,8 +7,9 @@ import styles from "./Cast.module.css";
 
 
 
-const Cast = ({ id }) => {
+const Cast = () => {
     const [cast, setCast] = useState([]);
+    const id = useParams().movieId;
 
     useEffect(() => {
         if (!id) {
@@ -34,6 +36,6 @@ const Cast = ({ id }) => {
             </ul>
         </div>
     )
-}
+};
 
 export default Cast;

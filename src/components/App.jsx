@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
@@ -12,24 +12,17 @@ const Reviews = lazy(() => import('components/reviews/Reviews'));
 const NotFound = lazy(() => import('./notFound/NotFound'));
 
 const App = () => {
-  const [id, setId] = useState(0);
-
-  const idHandler = (id) => {
-    setId(id)
-  };
-
-
   return (
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="movies" element={<MoviesPage />} />
 
-            <Route path="movies/:movieId" element={<MovieDetailsPage handler={idHandler} />}>
-              <Route path="cast" element={<Cast id={id} />} />
-              <Route path="reviews" element={<Reviews id={id} />} />
+            <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
@@ -39,6 +32,5 @@ const App = () => {
     </>
   );
 };
-
 
 export default App;
