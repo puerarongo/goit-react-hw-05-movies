@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+import { searchedFilms } from 'api/movieSearcher';
 import styles from "./MoviesPage.module.css";
 import homePageStyles from "../homePage/HomePage.module.css";
 
-const MoviesPage = ({submit, films}) => {
+Notify.init({
+    timeout: 3000,
+    warning: {
+        background: 'rgb(255, 124, 16)',
+        Color: 'rgb(0, 0, 0)',
+        flixIconColor: 'rgba(0,0,0)'
+    }
+});
+
+const MoviesPage = () => {
     const [value, setValue] = useState("");
+    const [movieName, setMovieName] = useState("");
+    const [searchFilm, setSearchFilm] = useState([]);
+
+
+    useEffect(() => {
+        if (!movieName) {
+            return
+        };
+
+        searchedFilms(movieName).then(response => {
+            if (response.data.results.length === 0) {
+                return Notify.warning("The title of this movie does not exist!");
+            }
+            const found = response.data.results.map(({ title, id }) => {
+                return { title: title, id: id }
+            })
+            setSearchFilm([...found]);
+        }).catch(error => console.log(error));
+    }, [movieName]);
+
 
     const inputHandler = e => {
         const { value } = e.currentTarget;
         setValue(value);
     };
 
+
     const submitHandler = (e) => {
         e.preventDefault();
-        submit(value);
+        setMovieName(value);
         setValue("");
     };
 
@@ -27,8 +60,8 @@ const MoviesPage = ({submit, films}) => {
                 <button className={styles.form__button} type="submit">Search</button>
             </form>
             <ul className={homePageStyles.trends}>
-                {films.length > 0 && (
-                    films.map(({ id, title }) => {
+                {searchFilm.length > 0 && (
+                    searchFilm.map(({ id, title }) => {
                         return <li key={id} className={homePageStyles.movie__item}>
                             <Link to={`${id}`} className={homePageStyles.movie__link} >{title}</Link>
                         </li>

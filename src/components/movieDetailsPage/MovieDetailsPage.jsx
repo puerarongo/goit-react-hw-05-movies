@@ -14,8 +14,10 @@ import { filmDescription } from 'api/movieSearcher';
 const MovieDetailsPage = ({ handler }) => {
     const [description, setDescription] = useState([]);
     const [error, setError] = useState("");
+    
     const id = useParams().movieId;
     const navigate = useNavigate();
+
 
     useEffect(() => {
         handler(id);

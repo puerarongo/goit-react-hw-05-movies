@@ -1,6 +1,20 @@
+import React, { useState, useEffect } from 'react';
+
+import { filmReview } from 'api/movieSearcher';
 import styles from "./Reviews.module.css";
 
-const Reviews = ({ review }) => {
+const Reviews = ({ id }) => {
+    const [review, setReview] = useState([]);
+
+    useEffect(() => {
+        if (!id) {
+            return
+        };
+
+        filmReview(id).then(response => setReview(response.data.results)).catch(error => console.log(error));
+    }, [id]);
+
+
     return (
         <div>
             <h1 className={styles.title}>Reviews</h1>
