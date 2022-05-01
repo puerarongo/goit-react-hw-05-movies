@@ -7,6 +7,7 @@ import Description from './description/Description';
 import AdditionalLinks from './additionalLinks/AdditionalLinks';
 import NotFound from 'components/notFound/NotFound';
 import defaultPicture from 'api/defaultPucture';
+import Modal from 'components/modal/Modal';
 import { filmDescription } from 'api/movieSearcher';
 
 
@@ -14,6 +15,8 @@ import { filmDescription } from 'api/movieSearcher';
 const MovieDetailsPage = () => {
     const [description, setDescription] = useState([]);
     const [error, setError] = useState("");
+    const [modalShow, setModalShow] = useState(false);
+    const [modalValue, setModalValue] = useState("");
 
     const navigate = useNavigate();
     const id = useParams().movieId;
@@ -34,16 +37,28 @@ const MovieDetailsPage = () => {
         navigate(-1);
     };
 
+    const modalHandler = img => {
+        setModalValue(img);
+        modalSwitch();
+    }
+
+    const modalSwitch = () => {
+        console.log("!")
+        setModalShow(!modalShow);
+    }
+
 
     return (
         <>
+            {modalShow && <Modal image={modalValue} switch={modalSwitch} /> }
             {!error ? (
             <>    
                 <div className={styles.container}>
                     <Button handler={buttonHandler} />
                     <div className={styles.container__description}>
-                        <img src={description.poster_path ? `https://image.tmdb.org/t/p/w500${description.poster_path}`
-                        : defaultPicture} alt={description.title} className={styles.image} />
+                            <img src={description.poster_path ? `https://image.tmdb.org/t/p/w500${description.poster_path}`
+                                : defaultPicture} alt={description.title} className={styles.image}
+                                onClick={() => modalHandler(description.poster_path) } />
                     
                         <Description title={description.title} score={description.vote_average}
                         overview={description.overview} genres={description.genres} />
