@@ -20,7 +20,6 @@ const MovieDetailsPage = () => {
 
     const navigate = useNavigate();
     const id = useParams().movieId;
-    console.log(window.history.state.idx)
 
 
     useEffect(() => {
