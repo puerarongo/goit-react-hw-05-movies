@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./MovieDetailsPage.module.css";
 import Button from './button/Button';
@@ -20,6 +20,7 @@ const MovieDetailsPage = () => {
 
     const navigate = useNavigate();
     const id = useParams().movieId;
+    console.log(window.history.state.idx)
 
 
     useEffect(() => {
@@ -34,7 +35,11 @@ const MovieDetailsPage = () => {
 
 
     const buttonHandler = () => {
-        navigate(-1);
+        if (window.history.state.idx > 0) {
+            navigate(-1);
+        } else {
+            navigate('/');
+        }
     };
 
     const modalHandler = img => {
