@@ -7,7 +7,6 @@ import Modal from 'components/modal/Modal';
 import styles from "./Cast.module.css";
 
 
-
 const Cast = () => {
     const [cast, setCast] = useState([]);
     const id = useParams().movieId;
@@ -25,12 +24,11 @@ const Cast = () => {
     const modalHandler = img => {
         setModalValue(img);
         modalSwitch();
-    }
+    };
 
     const modalSwitch = () => {
-        console.log("!")
         setModalShow(!modalShow);
-    }
+    };
 
 
     return (

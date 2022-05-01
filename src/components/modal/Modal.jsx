@@ -34,7 +34,7 @@ class Modal extends Component {
             </div>,
             modalRoot
         )
-    }
-}
+    };
+};
 
 export default Modal;

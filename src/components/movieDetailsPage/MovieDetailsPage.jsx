@@ -40,12 +40,11 @@ const MovieDetailsPage = () => {
     const modalHandler = img => {
         setModalValue(img);
         modalSwitch();
-    }
+    };
 
     const modalSwitch = () => {
-        console.log("!")
         setModalShow(!modalShow);
-    }
+    };
 
 
     return (
