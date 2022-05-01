@@ -11,7 +11,6 @@ import Modal from 'components/modal/Modal';
 import { filmDescription } from 'api/movieSearcher';
 
 
-
 const MovieDetailsPage = () => {
     const [description, setDescription] = useState([]);
     const [error, setError] = useState("");
