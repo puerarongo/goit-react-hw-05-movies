@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 
 import styles from "./MovieDetailsPage.module.css";
 import Button from './button/Button';
