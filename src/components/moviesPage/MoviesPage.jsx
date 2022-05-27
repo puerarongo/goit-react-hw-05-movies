@@ -45,7 +45,7 @@ const MoviesPage = () => {
       .catch(error => console.log(error));
 
     setSearchParams(createSearchParams({ query: movieName }));
-  }, [movieName]);
+  }, [movieName, setSearchParams]);
 
   const inputHandler = e => {
     const { value } = e.currentTarget;
