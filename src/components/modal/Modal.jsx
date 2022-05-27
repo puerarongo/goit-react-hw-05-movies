@@ -1,52 +1,48 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal__root');
 
-class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyboard);
-  }
+const Modal = ({ image, switchFunc }) => {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyboard);
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyboard);
-  }
+    return () => {
+      window.removeEventListener('keydown', handleKeyboard);
+    };
+  });
 
-  handleKeyboard = e => {
+  const handleKeyboard = e => {
     if (e.code === 'Escape') {
-      this.props.switch();
+      switchFunc();
     }
   };
 
-  handleClick = e => {
+  const handleClick = e => {
     if (e.currentTarget === e.target) {
-      this.props.switch();
+      switchFunc();
     }
   };
 
-  render() {
-    const { image } = this.props;
-
-    return createPortal(
-      <div className={styles.overlay} onClick={this.handleClick}>
-        <div className={styles.modal}>
-          <img
-            className={styles.image}
-            src={`https://image.tmdb.org/t/p/w500${image}`}
-            alt={'poster'}
-          />
-        </div>
-      </div>,
-      modalRoot
-    );
-  }
-}
+  return createPortal(
+    <div className={styles.overlay} onClick={handleClick}>
+      <div className={styles.modal}>
+        <img
+          className={styles.image}
+          src={`https://image.tmdb.org/t/p/w500${image}`}
+          alt={'poster'}
+        />
+      </div>
+    </div>,
+    modalRoot
+  );
+};
 
 Modal.propTypes = {
   image: PropTypes.string.isRequired,
-  switch: PropTypes.func.isRequired,
+  switchFunc: PropTypes.func.isRequired,
 };
 
 export default Modal;

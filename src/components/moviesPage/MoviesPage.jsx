@@ -16,14 +16,10 @@ Notify.init({
 });
 
 const MoviesPage = () => {
-  //const state = window.location.search.split('=')[1];
   const [value, setValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const [movieName, setMovieName] = useState(searchParams.get('query'));
   const [searchFilm, setSearchFilm] = useState([]);
-
-  //const history = useNavigate();
-  //const location = useLocation();
 
   useEffect(() => {
     if (!movieName) {
